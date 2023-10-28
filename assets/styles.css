@@ -19,7 +19,9 @@
 
 /* SECTION Background color behind chat app */
 body {
-    background-color: #04f304
+    /* background-color: #04f304; */
+    background-image: url('img/grimtolTownWideLowContrast.png')
+        /* Image goes here */
 }
 
 .card-header:first-child {
@@ -92,7 +94,8 @@ h4.card-title {
 /* Inside where chat lives container */
 .ps-container {
     position: relative;
-    background-color: rgb(95, 0, 95);
+    /* background-color: rgb(95, 0, 95); */
+    background-image: url('./img/lowerRuins.png');
 
 }
 
@@ -283,6 +286,7 @@ h4.card-title {
     outline: none !important;
     background-color: transparent;
     color: white;
+
 }
 
 button,
@@ -291,7 +295,8 @@ optgroup,
 select,
 textarea {
     font-family: Roboto, sans-serif;
-    font-weight: 300;
+    font-weight: 800;
+    font-size: larger;
 }
 
 .publisher-btn {
@@ -331,4 +336,8 @@ textarea {
 
 .text-info {
     color: #48b0f7 !important;
+}
+
+.mailSumbit:hover {
+    background-color: limegreen;
 }
