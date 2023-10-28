@@ -17,6 +17,15 @@ app.get('/', async (req: Request, res: Response) => {
     });
 });
 
+app.get('/chatPage', async (req: Request, res: Response) => {
+
+
+    //res.sendFile(path.join(__dirname, '/index.html'));
+    res.render('chatPage', {
+
+    });
+});
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
