@@ -1,5 +1,6 @@
 .card-bordered {
     border: 1px solid #ebebeb;
+
 }
 
 .card {
@@ -10,12 +11,15 @@
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
     -webkit-transition: .5s;
     transition: .5s;
+    height: 100vh;
+
 }
 
 .padding {
     padding: 3rem !important
 }
 
+/* SECTION Background color behind chat app */
 body {
     background-color: #f9f9fa
 }
@@ -35,6 +39,8 @@ body {
     padding: 15px 20px;
     background-color: transparent;
     border-bottom: 1px solid rgba(77, 82, 89, 0.07);
+    background-color: rgb(95, 0, 95);
+    color: white;
 }
 
 .card-header .card-title {
@@ -55,6 +61,7 @@ h4.card-title {
     margin-right: 8px;
 }
 
+/* SECTION Top right chat button */
 .btn-secondary {
     color: #4d5259 !important;
     background-color: #e4e7ea;
@@ -84,9 +91,11 @@ h4.card-title {
     border-bottom: 1px solid rgba(77, 82, 89, 0.07);
 }
 
-
+/* Inside where chat lives container */
 .ps-container {
     position: relative;
+    background-color: rgb(95, 0, 95);
+
 }
 
 .ps-container {
@@ -94,6 +103,7 @@ h4.card-title {
     touch-action: auto;
     overflow: hidden !important;
     -ms-overflow-style: none;
+
 }
 
 .media-chat {
@@ -138,7 +148,7 @@ h4.card-title {
     position: relative;
     padding: 6px 8px;
     margin: 4px 0;
-    background-color: #f5f6f7;
+    background-color: #6dd604;
     border-radius: 3px;
     font-weight: 100;
     color: #9b9b9b;
@@ -148,12 +158,14 @@ h4.card-title {
     margin: 0 8px;
 }
 
+/* SECTION this for the numbers/time under the your chat bubbles */
 .media-chat .media-body p.meta {
     background-color: transparent !important;
     padding: 0;
     opacity: .8;
 }
 
+/* SECTION this controls the day / section of your chat. Yesterday vs today */
 .media-meta-day {
     -webkit-box-pack: justify;
     justify-content: space-between;
@@ -213,10 +225,17 @@ h4.card-title {
     transition: background-color .2s linear;
 }
 
+/* SECTION This for the chat on the left that I created */
+.media-chat.media-chat .media-body p {
+    background-color: rgb(115, 192, 0);
+    color: white;
+}
+
+/* SECTION Media-chat.media is the chat bubble for chat app from the other user */
 .media-chat.media-chat-reverse .media-body p {
     float: right;
     clear: right;
-    background-color: #48b0f7;
+    background-color: #f37107;
     color: #fff;
 }
 
@@ -244,7 +263,8 @@ h4.card-title {
     -webkit-box-align: center;
     align-items: center;
     padding: 12px 20px;
-    background-color: #f9fafb;
+    border-top: 1px, solid, black;
+    background-color: rgb(95, 0, 95);
 }
 
 .publisher>*:first-child {
@@ -253,6 +273,7 @@ h4.card-title {
 
 .publisher>* {
     margin: 0 8px;
+
 }
 
 .publisher-input {
@@ -261,6 +282,7 @@ h4.card-title {
     border: none;
     outline: none !important;
     background-color: transparent;
+    color: white;
 }
 
 button,
@@ -281,6 +303,7 @@ textarea {
     overflow: -moz-hidden-unscrollable;
     -webkit-transition: .2s linear;
     transition: .2s linear;
+
 }
 
 .file-group {
