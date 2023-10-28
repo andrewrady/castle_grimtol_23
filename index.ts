@@ -17,13 +17,16 @@ app.get('/', async (req: Request, res: Response) => {
 
 app.get('/chatPage', async (req: Request, res: Response) => {
 
-
-    //res.sendFile(path.join(__dirname, '/index.html'));
+    const response = await openid.getChat('respond to me like we\'re on a date. Hi beautiful');
     res.render('chatPage', {
-
+        response: response
     });
 });
 
+app.post('/chatPage', async (req: Request, res: Response) => {
+    const response = await openid.getChat(`respond to me like we\'re on a date. ${req.body}`);
+    res.status(200).json(response)
+});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

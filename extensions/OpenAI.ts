@@ -1,20 +1,36 @@
-import OpenAI from 'openai';
+import { OpenAIApi, Configuration } from 'openai';
 
 export class OpenAi {
 
-    private readonly openai = new OpenAI({
-        apiKey: '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'
+    private readonly openai = new OpenAIApi(new Configuration({apiKey: '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'}))
+
+
+        /*
+        {
+        apiKey: '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'
     });
+    */
 
     public async getImage(prompt: string): Promise<Array<string | undefined>> {
-        const response = await this.openai.images.generate({
+
+        const response = await this.openai.createImage({
             prompt: prompt,
             n: 5,
             size: '1024x1024'
         });
 
-        const image = response.data.map(x => x.url);
+        const image = response.data.data.map(x => x.url);
 
         return image;
+    }
+
+    public async getChat(prompt: string): Promise<string | undefined> {
+        const response = await this.openai.createChatCompletion({
+            model: 'gpt-3.5-turbo',
+            messages: [{ role: 'user', content: prompt}]
+        });
+
+        console.log(response.data.choices)
+        return response.data.choices[0].message?.content;
     }
 }
