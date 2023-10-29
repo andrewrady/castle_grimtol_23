@@ -9,9 +9,12 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
 </head>
 
-<div class="page-content page-container" id="page-content">
+<div id="app" class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">
@@ -21,71 +24,24 @@
                     </div>
 
                     <div class="ps-container ps-theme-default ps-active-y" id="chat-content">
+                        <!-- YOU Section -->
                         <div class="media media-chat ">
                             <img class="avatar" src="./img/characters/KingVampire.png" alt="...">
-                            <div class="media-body">
-                                <p>Hi</p>
-                                <p>How are you ...???</p>
-                                <p>What are you doing tomorrow?<br> Can we come up a bar?</p>
+                            <div v-for="(message, index) in messages" :message="message" :key="index"
+                                class="media-body">
+                                <p>{{ message }}</p>
                             </div>
                         </div>
 
                         <div class="media media-meta-day">Today</div>
                         <div class="media media-chat media-chat-reverse">
                             <img class="avatar" src="./img/characters/FrogBaker.png" alt="...">
-                            <div class="media-body">
-                                <p>Hiii, I'm good.</p>
-                                <p>How are you doing?</p>
-                                <p>Long time no see! Tomorrow office. will be free on sunday.</p>
+                            <div v-for="(display, index) in displays" :display="display" :key="index"
+                                class="media-body">
+                                <p>{{display}}</p>
                             </div>
                         </div>
 
-                        <div class="media media-chat">
-                            <img class="avatar" src="./img/characters/KingVampire.png" alt="...">
-                            <div class="media-body">
-                                <p>Okay</p>
-                                <p>We will go on sunday? </p>
-                            </div>
-                        </div>
-
-                        <!-- Section for other user -->
-                        <div class="media media-chat media-chat-reverse">
-                            <img class="avatar" src="./img/characters/FrogBaker.png" alt="...">
-                            <div class="media-body">
-                                <p>That's awesome!</p>
-                                <p>I will meet you Sandon Square sharp at 10 AM</p>
-                                <p>Is that okay?</p>
-                            </div>
-                        </div>
-
-                        <div class="media media-chat">
-                            <img class="avatar" src="./img/characters/KingVampire.png" alt="...">
-                            <div class="media-body">
-                                <p>Okay i will meet you on Sandon Square </p>
-                            </div>
-                        </div>
-
-                        <div class="media media-chat media-chat-reverse">
-                            <img class="avatar" src="./img/characters/FrogBaker.png" alt="...">
-                            <div class="media-body">
-                                <p>Do you have pictures of Matley Marriage?</p>
-                            </div>
-                        </div>
-
-                        <div class="media media-chat">
-                            <img class="avatar" src="./img/characters/KingVampire.png" alt="...">
-                            <div class="media-body">
-                                <p>Sorry I don't have. i changed my phone.</p>
-                            </div>
-                        </div>
-
-                        <!-- NOTE anything with FrogBaker or reverse is an opposite user -->
-                        <div class="media media-chat media-chat-reverse">
-                            <img class="avatar" src="./img/characters/FrogBaker.png" alt="...">
-                            <div class="media-body">
-                                <p>Okay then see you on sunday!!</p>
-                            </div>
-                        </div>
 
                         <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                             <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
@@ -96,15 +52,15 @@
                     </div>
 
                     <div class="publisher  border-light">
-                        <img class="avatar avatar-xs" src="./img/characters/KingVampire.png"="...">
-                        <input class="publisher-input" type="text" placeholder="Trick or Treat☠️👄">
+                        <img class="avatar avatar-xs" src="./img/characters/KingVampire.png">
+                        <input v-model="messages.body" placeholder="Type something here">
                         <span class="publisher-btn file-group">
                             <i class="fa fa-paperclip file-browser"></i>
-                            <input type="file">
+                            <input v-model="message.body" type="file">
                         </span>
                         <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a>
                         <a class="publisher-btn text-info" href="#" data-abc="true">
-                            <img class="mailSumbit" src="./grimtol_icon_pack/png/mail.png" />
+                            <img @click="sendDataToAPI" class="mailSumbit" src="./grimtol_icon_pack/png/mail.png" />
                         </a>
                     </div>
 
@@ -113,5 +69,35 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+    import axios from 'axios';
+    const vueApp = new Vue({
+        el: '#app',
+        data: {
+            displays: ['redbox', 'card'],
+            message: { body: 'This is where my input will go with v-model' }
+        },
+        methods: {
+            sendDataToAPI() {
+                // You can send the messages.body value to your API here
+                const inputValue = this.message.body;
+                // Use Axios or another HTTP library to send the data to your Express.js route.
+
+                axios.post('/chatPage', { data: inputValue })
+                    .then(response => {
+                        // Handle the API response here if needed
+                        console.log('Data sent to API:', inputValue);
+                    })
+                    .catch(error => {
+                        // Handle any errors here
+                        console.error('Error sending data to API:', error);
+                    });
+            }
+        }
+    });
+</script>
 
 </html>

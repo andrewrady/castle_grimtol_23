@@ -2,14 +2,9 @@ import { OpenAIApi, Configuration } from 'openai';
 
 export class OpenAi {
 
-    private readonly openai = new OpenAIApi(new Configuration({apiKey: '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'}))
-
-
-        /*
-        {
-        apiKey: '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'
-    });
-    */
+    private readonly openai = new OpenAIApi(new Configuration({
+        apiKey: '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'
+    }))
 
     public async getImage(prompt: string): Promise<Array<string | undefined>> {
 
@@ -27,7 +22,7 @@ export class OpenAi {
     public async getChat(prompt: string): Promise<string | undefined> {
         const response = await this.openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            messages: [{ role: 'user', content: prompt}]
+            messages: [{ role: 'user', content: prompt }]
         });
 
         console.log(response.data.choices)
