@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
 const openid = new OpenAi();
 
 app.get('/', async (req: Request, res: Response) => {
-    const images:Array<string | undefined> = await openid.getImage('vampire girl');
+    const images: Array<string | undefined> = await openid.getImage('vampire girl');
 
     res.render('index', {
         images: images
